@@ -51,37 +51,6 @@
       font-weight: bold;
     }
 
-    .music-player {
-      margin-top: 2rem;
-    }
-
-    .player-wrapper {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      background-color: rgba(255, 255, 255, 0.85);
-      padding: 12px 16px;
-      border-radius: 16px;
-      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
-    }
-
-    .player-wrapper button {
-      margin-top: 10px;
-      padding: 8px 20px;
-      border: none;
-      border-radius: 10px;
-      background-color: #aa4b6b;
-      color: white;
-      font-weight: bold;
-      font-family: 'Montserrat', sans-serif;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    .player-wrapper button:hover {
-      background-color: #8a3b58;
-    }
-
     #guest-name {
       font-weight: 600;
       color: #aa4b6b;
@@ -93,6 +62,10 @@
       h1 {
         font-size: 2.8rem;
       }
+    }
+
+    audio {
+      display: none;
     }
   </style>
 </head>
@@ -114,53 +87,31 @@
 
     <p><em>Reception to follow</em></p>
 
-    <div class="music-player">
-      <p style="margin-bottom: 0.5rem; font-weight: bold;">Now Playing: Romantic Song</p>
-      <div class="player-wrapper">
-        <audio id="audioPlayer" autoplay loop playsinline>
-          <source src="assets/romantic-song.mp3" type="audio/mpeg" />
-          Your browser does not support the audio element.
-        </audio>
-        <button onclick="togglePlay()" id="playPauseBtn">⏸ Pause</button>
-      </div>
-    </div>
+    <audio id="audioPlayer" autoplay loop playsinline>
+      <source src="assets/romantic-song.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
   </div>
 
   <script>
+    // Tampilkan nama tamu dari URL
     window.addEventListener('DOMContentLoaded', () => {
-      // Guest name dari URL
       const params = new URLSearchParams(window.location.search);
       const guest = params.get('dear');
       if (guest) {
         document.getElementById('guest-name').textContent = `Dear ${decodeURIComponent(guest)},`;
       }
 
-      // Paksa autoplay
+      // Paksa audio autoplay
       const audio = document.getElementById('audioPlayer');
       const playPromise = audio.play();
 
       if (playPromise !== undefined) {
-        playPromise
-          .then(() => {
-            console.log("Audio autoplayed 🎶");
-          })
-          .catch(error => {
-            console.log("Autoplay prevented 😬 waiting for user interaction...");
-          });
+        playPromise.catch(error => {
+          console.warn("Autoplay mungkin diblokir, tunggu interaksi user.");
+        });
       }
     });
-
-    function togglePlay() {
-      const audio = document.getElementById('audioPlayer');
-      const btn = document.getElementById('playPauseBtn');
-      if (audio.paused) {
-        audio.play();
-        btn.textContent = '⏸ Pause';
-      } else {
-        audio.pause();
-        btn.textContent = '▶️ Play';
-      }
-    }
   </script>
 </body>
 </html>
