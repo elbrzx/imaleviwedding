@@ -61,7 +61,7 @@
       margin-top: 1rem;
     }
 
-    /* 🎉 Popup Styling */
+    /* 💌 Welcome Popup */
     .popup {
       position: fixed;
       top: 0; left: 0;
@@ -108,6 +108,26 @@
       to { opacity: 1; transform: scale(1); }
     }
 
+    /* ✨ Text Animation */
+    .fade-slide {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeSlideUp 1s ease forwards;
+    }
+
+    .fade-delay-1 { animation-delay: 0.3s; }
+    .fade-delay-2 { animation-delay: 0.6s; }
+    .fade-delay-3 { animation-delay: 0.9s; }
+    .fade-delay-4 { animation-delay: 1.2s; }
+    .fade-delay-5 { animation-delay: 1.5s; }
+
+    @keyframes fadeSlideUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     @media (max-width: 600px) {
       h1 { font-size: 2.8rem; }
     }
@@ -115,7 +135,7 @@
 </head>
 <body>
 
-  <!-- 🌟 Popup -->
+  <!-- 🎉 Welcome Popup -->
   <div class="popup" id="popup">
     <div class="popup-box">
       <h3>You're Invited!</h3>
@@ -124,31 +144,31 @@
     </div>
   </div>
 
-  <!-- 💌 Invitation Section -->
+  <!-- 💒 Main Invitation -->
   <div class="overlay" id="main-content" style="display:none;">
-    <div id="guest-name"></div>
-    <h2>WITH THEIR FEET IN THE SAND</h2>
-    <h1>Putri Fatimah Aspari</h1>
-    <h1>&</h1>
-    <h1>Levi Adam Hansen</h1>
+    <div id="guest-name" class="fade-slide fade-delay-1"></div>
+    <h2 class="fade-slide fade-delay-2">WITH THEIR FEET IN THE SAND</h2>
+    <h1 class="fade-slide fade-delay-3">Putri Fatimah Aspari</h1>
+    <h1 class="fade-slide fade-delay-3">&</h1>
+    <h1 class="fade-slide fade-delay-3">Levi Adam Hansen</h1>
 
-    <p>invite you to join them as they exchange marriage vows at the yacht wedding reception.</p>
-    <p><strong>Sunday, November 30, 2025</strong><br>at 05:00 PM</p>
+    <p class="fade-slide fade-delay-4">invite you to join them as they exchange marriage vows at the yacht wedding reception.</p>
+    <p class="fade-slide fade-delay-4"><strong>Sunday, November 30, 2025</strong><br>at 05:00 PM</p>
 
-    <p><strong>The Shivana Bespoke</strong><br>
+    <p class="fade-slide fade-delay-5"><strong>The Shivana Bespoke</strong><br>
       📍 <a href="https://maps.app.goo.gl/AjGb4hgiXtAybJ786" target="_blank">View Location on Google Maps</a>
     </p>
 
-    <p><em>Reception to follow</em></p>
+    <p class="fade-slide fade-delay-5"><em>Reception to follow</em></p>
   </div>
 
-  <!-- 🎵 Background Music -->
+  <!-- 🎵 Music -->
   <audio id="bg-music" autoplay muted loop preload="auto">
     <source src="assets/romantic-song.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
 
-  <!-- 🎯 Script -->
+  <!-- 💫 Scripts -->
   <script>
     const audio = document.getElementById("bg-music");
 
@@ -160,7 +180,6 @@
     }
 
     window.addEventListener('DOMContentLoaded', () => {
-      // Nama tamu dari URL
       const params = new URLSearchParams(window.location.search);
       const guest = params.get('dear');
       if (guest) {
@@ -168,6 +187,5 @@
       }
     });
   </script>
-
 </body>
 </html>
