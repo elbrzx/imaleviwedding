@@ -1,191 +1,107 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Putri & Levi Wedding Invitation</title>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wedding Invitation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Open+Sans&display=swap" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
     body {
       margin: 0;
-      font-family: 'Montserrat', sans-serif;
-      background: url('assets/background.jpg') no-repeat center center/cover;
-      color: #222;
+      font-family: 'Open Sans', sans-serif;
+      background: linear-gradient(to bottom, #fff5f8, #ffeaea);
+      color: #333;
       text-align: center;
+      overflow-x: hidden;
     }
-
-    .overlay {
-      background: rgba(255, 255, 255, 0.95);
-      min-height: 100vh;
-      padding: 4rem 2rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+    .hero {
+      padding: 100px 20px;
     }
-
     h1 {
       font-family: 'Great Vibes', cursive;
-      font-size: 4rem;
-      margin: 0.5rem 0;
+      font-size: 3em;
+      margin-bottom: 0.2em;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 1s ease;
     }
-
-    h2 {
-      font-size: 1.2rem;
-      letter-spacing: 1px;
-      margin-bottom: 2rem;
-      font-weight: 400;
+    h2, p {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 1s ease;
     }
-
-    p {
-      max-width: 600px;
-      margin: 1rem auto;
-      font-size: 1rem;
-      line-height: 1.6;
+    .show {
+      opacity: 1;
+      transform: translateY(0);
     }
-
+    .countdown {
+      font-size: 1.5em;
+      margin-top: 20px;
+    }
     .location a {
-      color: #00695c;
+      color: #d6336c;
       text-decoration: none;
       font-weight: bold;
     }
-
-    #guest-name {
-      font-weight: 600;
-      color: #aa4b6b;
-      font-size: 1.2rem;
-      margin-top: 1rem;
+    .rsvp {
+      margin: 40px 0;
     }
-
-    /* 💌 Welcome Popup */
-    .popup {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw; height: 100vh;
-      background: rgba(0, 0, 0, 0.6);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 999;
-    }
-
-    .popup-box {
-      background: white;
-      padding: 2rem;
-      max-width: 90%;
-      border-radius: 15px;
-      text-align: center;
-      animation: fadeIn 0.6s ease forwards;
-    }
-
-    .popup-box h3 {
-      font-family: 'Great Vibes', cursive;
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-
-    .popup-box p {
-      margin-bottom: 1.5rem;
-    }
-
-    .popup-box button {
-      padding: 0.7rem 1.5rem;
-      border: none;
-      background-color: #aa4b6b;
-      color: white;
+    .rsvp a {
+      padding: 12px 30px;
+      background-color: #d6336c;
+      color: #fff;
+      border-radius: 25px;
+      text-decoration: none;
       font-weight: bold;
-      font-size: 1rem;
-      border-radius: 30px;
-      cursor: pointer;
+      transition: background 0.3s;
     }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.9); }
-      to { opacity: 1; transform: scale(1); }
-    }
-
-    /* ✨ Text Animation */
-    .fade-slide {
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeSlideUp 1s ease forwards;
-    }
-
-    .fade-delay-1 { animation-delay: 0.3s; }
-    .fade-delay-2 { animation-delay: 0.6s; }
-    .fade-delay-3 { animation-delay: 0.9s; }
-    .fade-delay-4 { animation-delay: 1.2s; }
-    .fade-delay-5 { animation-delay: 1.5s; }
-
-    @keyframes fadeSlideUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @media (max-width: 600px) {
-      h1 { font-size: 2.8rem; }
+    .rsvp a:hover {
+      background-color: #a0204f;
     }
   </style>
 </head>
 <body>
-
-  <!-- 🎉 Welcome Popup -->
-  <div class="popup" id="popup">
-    <div class="popup-box">
-      <h3>You're Invited!</h3>
-      <p>To the wedding of<br><strong>Putri & Levi</strong></p>
-      <button onclick="closePopup()">Open Invitation</button>
+  <audio autoplay loop hidden>
+    <source src="assets/romantic-song.mp3" type="audio/mp3">
+  </audio>  <div class="hero">
+    <h1 class="scroll-reveal">Putri Fatimah Aspari</h1>
+    <h1 class="scroll-reveal">& Levi Adam Hansen</h1>
+    <h2 class="scroll-reveal">Sunday, 30 November 2025</h2>
+    <p class="scroll-reveal">05:00 PM at The Shivanna Bespoke</p>
+    <div class="location scroll-reveal">
+      <a href="https://maps.app.goo.gl/ZKCPfC6DJHXeRWpJA" target="_blank">View Location</a>
     </div>
-  </div>
-
-  <!-- 💒 Main Invitation -->
-  <div class="overlay" id="main-content" style="display:none;">
-    <div id="guest-name" class="fade-slide fade-delay-1"></div>
-    <h2 class="fade-slide fade-delay-2">WITH THEIR FEET IN THE SAND</h2>
-    <h1 class="fade-slide fade-delay-3">Putri Fatimah Aspari</h1>
-    <h1 class="fade-slide fade-delay-3">&</h1>
-    <h1 class="fade-slide fade-delay-3">Levi Adam Hansen</h1>
-
-    <p class="fade-slide fade-delay-4">invite you to join them as they exchange marriage vows at the yacht wedding reception.</p>
-    <p class="fade-slide fade-delay-4"><strong>Sunday, November 30, 2025</strong><br>at 05:00 PM</p>
-
-    <p class="fade-slide fade-delay-5"><strong>The Shivana Bespoke</strong><br>
-      📍 <a href="https://maps.app.goo.gl/AjGb4hgiXtAybJ786" target="_blank">View Location on Google Maps</a>
-    </p>
-
-    <p class="fade-slide fade-delay-5"><em>Reception to follow</em></p>
-  </div>
-
-  <!-- 🎵 Music -->
-  <audio id="bg-music" autoplay muted loop preload="auto">
-    <source src="assets/romantic-song.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
-
-  <!-- 💫 Scripts -->
-  <script>
-    const audio = document.getElementById("bg-music");
-
-    function closePopup() {
-      document.getElementById("popup").style.display = "none";
-      document.getElementById("main-content").style.display = "block";
-      audio.muted = false;
-      audio.play().catch(() => {});
+    <div class="countdown scroll-reveal" id="countdown"></div>
+    <div class="rsvp scroll-reveal">
+      <a href="#">RSVP</a>
+    </div>
+  </div>  <script>
+    // Countdown Timer
+    const targetDate = new Date('2025-11-30T17:00:00').getTime();
+    const countdownEl = document.getElementById('countdown');
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      countdownEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
     }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
 
-    window.addEventListener('DOMContentLoaded', () => {
-      const params = new URLSearchParams(window.location.search);
-      const guest = params.get('dear');
-      if (guest) {
-        document.getElementById('guest-name').textContent = `Dear ${decodeURIComponent(guest)},`;
-      }
-    });
-  </script>
-</body>
+    // Scroll animation
+    const reveals = document.querySelectorAll('.scroll-reveal');
+    function revealOnScroll() {
+      const windowHeight = window.innerHeight;
+      reveals.forEach(el => {
+        const elementTop = el.getBoundingClientRect().top;
+        if (elementTop < windowHeight - 100) {
+          el.classList.add('show');
+        }
+      });
+    }
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('load', revealOnScroll);
+  </script></body>
 </html>
