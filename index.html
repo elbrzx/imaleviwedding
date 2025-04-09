@@ -25,6 +25,36 @@
       align-items: center;
     }
 
+    .welcome-popup {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+      flex-direction: column;
+    }
+
+    .welcome-popup h2 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #aa4b6b;
+    }
+
+    .welcome-popup button {
+      background-color: #aa4b6b;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
     h1 {
       font-family: 'Great Vibes', cursive;
       font-size: 4rem;
@@ -58,20 +88,25 @@
       margin-top: 1rem;
     }
 
+    audio {
+      display: none;
+    }
+
     @media (max-width: 600px) {
       h1 {
         font-size: 2.8rem;
       }
     }
-
-    audio {
-      display: none;
-    }
   </style>
 </head>
 
 <body>
-  <div class="overlay">
+  <div class="welcome-popup" id="welcomePopup">
+    <h2>Welcome to Putri & Levi's Wedding 💖</h2>
+    <button onclick="enterSite()">Tap to Enter</button>
+  </div>
+
+  <div class="overlay" id="mainContent" style="display:none;">
     <div id="guest-name"></div>
     <h2>WITH THEIR FEET IN THE SAND</h2>
     <h1>Putri Fatimah Aspari</h1>
@@ -86,30 +121,27 @@
     </p>
 
     <p><em>Reception to follow</em></p>
-
-    <audio id="audioPlayer" autoplay loop playsinline>
+    <audio id="audioPlayer" loop>
       <source src="assets/romantic-song.mp3" type="audio/mpeg" />
       Your browser does not support the audio element.
     </audio>
   </div>
 
   <script>
-    // Tampilkan nama tamu dari URL
+    function enterSite() {
+      document.getElementById('welcomePopup').style.display = 'none';
+      document.getElementById('mainContent').style.display = 'block';
+      const audio = document.getElementById('audioPlayer');
+      audio.play().catch(err => {
+        console.warn("Audio play failed: ", err);
+      });
+    }
+
     window.addEventListener('DOMContentLoaded', () => {
       const params = new URLSearchParams(window.location.search);
       const guest = params.get('dear');
       if (guest) {
         document.getElementById('guest-name').textContent = `Dear ${decodeURIComponent(guest)},`;
-      }
-
-      // Paksa audio autoplay
-      const audio = document.getElementById('audioPlayer');
-      const playPromise = audio.play();
-
-      if (playPromise !== undefined) {
-        playPromise.catch(error => {
-          console.warn("Autoplay mungkin diblokir, tunggu interaksi user.");
-        });
       }
     });
   </script>
