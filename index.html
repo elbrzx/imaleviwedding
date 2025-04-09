@@ -88,6 +88,13 @@
       margin-top: 1rem;
     }
 
+    .countdown {
+      margin-top: 2rem;
+      font-size: 1.5rem;
+      color: #aa4b6b;
+      font-weight: 600;
+    }
+
     audio {
       display: none;
     }
@@ -103,10 +110,8 @@
 <body>
   <!-- Welcome popup -->
   <div class="welcome-popup" id="welcomePopup">
-    <h2>Putri</h2>
-    <h1>💖</h1>
-    <h2>Levi</h2>
-    <button onclick="enterSite()">Open Invitation</button>
+    <h2>Welcome to Putri & Levi's Wedding 💖</h2>
+    <button onclick="enterSite()">Tap to Enter</button>
   </div>
 
   <!-- Main Content -->
@@ -125,24 +130,28 @@
     </p>
 
     <p><em>Reception to follow</em></p>
-    
+
+    <div class="countdown" id="countdown"></div>
+
     <!-- Hidden audio player -->
-    <audio id="audioPlayer" loop>
-      <source src="romantic-song.mp3" type="audio/mpeg" />
+    <audio id="audioPlayer" loop preload="auto">
+      <source src="assets/romantic-song.mp3" type="audio/mpeg" />
       Your browser does not support the audio element.
     </audio>
   </div>
 
   <script>
     function enterSite() {
-      // Hide popup
       document.getElementById('welcomePopup').style.display = 'none';
       document.getElementById('mainContent').style.display = 'block';
 
-      // Play audio
       const audio = document.getElementById('audioPlayer');
-      audio.play().catch(err => {
-        console.warn("Audio play failed: ", err);
+      // Trick for autoplay on mobile
+      audio.muted = true;
+      audio.play().then(() => {
+        audio.muted = false;
+      }).catch(err => {
+        console.warn("Audio autoplay failed: ", err);
       });
 
       // Show guest name
@@ -151,6 +160,31 @@
       if (guest) {
         document.getElementById('guest-name').textContent = `Dear ${decodeURIComponent(guest)},`;
       }
+
+      startCountdown();
+    }
+
+    function startCountdown() {
+      const countdownEl = document.getElementById('countdown');
+      const eventDate = new Date("November 30, 2025 17:00:00").getTime();
+
+      const timer = setInterval(() => {
+        const now = new Date().getTime();
+        const distance = eventDate - now;
+
+        if (distance < 0) {
+          clearInterval(timer);
+          countdownEl.textContent = "It's Wedding Time! 💍";
+          return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        countdownEl.textContent = `Countdown: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+      }, 1000);
     }
   </script>
 </body>
