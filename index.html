@@ -1,23 +1,108 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>Ima & Levi Wedding Invitation</title>
-    <style>
-      body { font-family: sans-serif; background: #fff6f6; text-align: center; padding: 2em; }
-      .greeting { font-size: 1.5em; margin-top: 2em; }
-    </style>
-  </head>
-  <body>
-    <h1>Wedding Invitation</h1>
-    <h2>Ima & Levi</h2>
-    <div class="greeting" id="greeting">Dear,</div>
-    <p>Kami mengundangmu untuk hadir dalam hari spesial kami!</p>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Undangan Pernikahan Ima & Levi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Open+Sans&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Open Sans', sans-serif;
+      background: linear-gradient(to bottom right, #fff6f6, #ffeaea);
+      color: #333;
+      text-align: center;
+      padding: 2rem;
+    }
 
-    <script>
-      const params = new URLSearchParams(window.location.search);
-      const dear = params.get("dear") || "Tamu Spesial";
-      document.getElementById("greeting").innerText = `Dear ${dear}, selamat datang! 💖`;
-    </script>
-  </body>
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3em;
+      color: #d26a6a;
+      margin-top: 1rem;
+    }
+
+    h2 {
+      font-size: 1.5em;
+      margin-bottom: 1.5rem;
+    }
+
+    .greeting {
+      font-size: 1.2em;
+      font-weight: bold;
+      margin-bottom: 2rem;
+      color: #bb4d4d;
+    }
+
+    .section {
+      margin: 2rem auto;
+      max-width: 600px;
+      background: #ffffffcc;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .footer {
+      margin-top: 4rem;
+      font-size: 0.9em;
+      color: #777;
+    }
+
+    .love {
+      font-size: 2rem;
+      color: #e26c6c;
+    }
+
+    img.cover {
+      max-width: 100%;
+      border-radius: 16px;
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <img class="cover" src="https://i.imgur.com/nJV5R6z.jpg" alt="Ima & Levi Wedding Cover"/>
+
+  <h1>Ima & Levi</h1>
+  <h2>Dengan penuh cinta, kami mengundangmu ke hari istimewa kami</h2>
+
+  <div class="greeting" id="greeting">Dear Tamu Spesial,</div>
+
+  <div class="section">
+    <h3>💍 Akad Nikah</h3>
+    <p>Sabtu, 12 Oktober 2025<br/>
+    Pukul 08.00 WIB<br/>
+    Kediaman Mempelai Wanita</p>
+  </div>
+
+  <div class="section">
+    <h3>🎉 Resepsi</h3>
+    <p>Sabtu, 12 Oktober 2025<br/>
+    Pukul 11.00 - 14.00 WIB<br/>
+    Ballroom Grand Hyatt, Jakarta</p>
+  </div>
+
+  <div class="section">
+    <h3>📍 Lokasi</h3>
+    <p><a href="https://maps.google.com" target="_blank">Lihat di Google Maps</a></p>
+  </div>
+
+  <div class="section">
+    <h3>💌 RSVP</h3>
+    <p>Konfirmasi kehadiranmu melalui <a href="https://forms.gle/your-rsvp-link" target="_blank">Form ini</a> yaa 💖</p>
+  </div>
+
+  <div class="footer">
+    <p class="love">Dengan cinta,</p>
+    <p>Ima & Levi</p>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const dear = params.get("dear") || "Tamu Spesial";
+    document.getElementById("greeting").innerText = `Dear ${dear},`;
+  </script>
+</body>
 </html>
