@@ -16,7 +16,7 @@
     }
 
     .overlay {
-      background: rgba(255, 255, 255, 0.6);
+      background: rgba(255, 255, 255, 0.7);
       padding: 4rem 2rem;
       min-height: 100vh;
       display: flex;
@@ -95,29 +95,6 @@
       }
     }
   </style>
-
-  <script>
-    // Ambil nama dari URL (contoh: ?dear=Putri%20and%20partner)
-    window.addEventListener('DOMContentLoaded', () => {
-      const params = new URLSearchParams(window.location.search);
-      const guest = params.get('dear');
-      if (guest) {
-        document.getElementById('guest-name').textContent = `Dear ${decodeURIComponent(guest)},`;
-      }
-    });
-
-    function togglePlay() {
-      const audio = document.getElementById('audioPlayer');
-      const btn = document.getElementById('playPauseBtn');
-      if (audio.paused) {
-        audio.play();
-        btn.textContent = '⏸ Pause';
-      } else {
-        audio.pause();
-        btn.textContent = '▶️ Play';
-      }
-    }
-  </script>
 </head>
 
 <body>
@@ -140,7 +117,7 @@
     <div class="music-player">
       <p style="margin-bottom: 0.5rem; font-weight: bold;">Now Playing: Romantic Song</p>
       <div class="player-wrapper">
-        <audio id="audioPlayer" autoplay loop>
+        <audio id="audioPlayer" autoplay loop playsinline>
           <source src="assets/romantic-song.mp3" type="audio/mpeg" />
           Your browser does not support the audio element.
         </audio>
@@ -148,5 +125,42 @@
       </div>
     </div>
   </div>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      // Guest name dari URL
+      const params = new URLSearchParams(window.location.search);
+      const guest = params.get('dear');
+      if (guest) {
+        document.getElementById('guest-name').textContent = `Dear ${decodeURIComponent(guest)},`;
+      }
+
+      // Paksa autoplay
+      const audio = document.getElementById('audioPlayer');
+      const playPromise = audio.play();
+
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            console.log("Audio autoplayed 🎶");
+          })
+          .catch(error => {
+            console.log("Autoplay prevented 😬 waiting for user interaction...");
+          });
+      }
+    });
+
+    function togglePlay() {
+      const audio = document.getElementById('audioPlayer');
+      const btn = document.getElementById('playPauseBtn');
+      if (audio.paused) {
+        audio.play();
+        btn.textContent = '⏸ Pause';
+      } else {
+        audio.pause();
+        btn.textContent = '▶️ Play';
+      }
+    }
+  </script>
 </body>
 </html>
