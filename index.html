@@ -4,158 +4,89 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Putri & Levi Wedding Invitation</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Open+Sans&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
-      font-family: 'Open Sans', sans-serif;
-      background: #fefaf7;
-      color: #333;
+      padding: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: url('assets/background.jpg') no-repeat center center/cover;
+      color: #222;
+      text-align: center;
     }
 
-    .hero {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
+    .overlay {
+      background: rgba(255, 255, 255, 0.85);
       padding: 4rem 2rem;
-      background-image: url('assets/background.jpg');
-      background-size: cover;
       min-height: 100vh;
-    }
-
-    .left {
-      flex: 1;
-      max-width: 600px;
-    }
-
-    .left h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
-      color: #6e6e6e;
-      font-weight: 500;
-    }
-
-    .left h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 3.5rem;
-      margin: 0.5rem 0;
-    }
-
-    .left h1 span {
-      font-weight: 700;
-    }
-
-    .left p.date {
-      font-size: 1.2rem;
-      margin: 1rem 0;
-    }
-
-    .left p.desc {
-      font-size: 1rem;
-      color: #666;
-      max-width: 500px;
-    }
-
-    .left .location {
-      font-size: 1rem;
-      color: #444;
-      margin-top: 1.5rem;
-    }
-
-    .left .location a {
-      color: #00695c;
-      text-decoration: none;
-    }
-
-    .left button {
-      margin-top: 2rem;
-      padding: 0.8rem 1.5rem;
-      background-color: #556b61;
-      color: white;
-      border: none;
-      border-radius: 30px;
-      font-size: 1rem;
-      cursor: pointer;
-    }
-
-    .right {
-      flex: 1;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
     }
 
-    .photo-frame {
-      position: relative;
-      border-radius: 50%;
-      padding: 1rem;
-      background: #fff;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-      overflow: hidden;
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 4rem;
+      margin: 0.5rem 0;
     }
 
-    .photo-frame img {
-      width: 100%;
-      max-width: 400px;
-      border-radius: 50%;
+    h2 {
+      font-size: 1.2rem;
+      letter-spacing: 1px;
+      margin-bottom: 2rem;
+      font-weight: 400;
     }
 
-    nav {
-      position: absolute;
-      top: 20px;
-      right: 40px;
+    p {
+      max-width: 600px;
+      margin: 1rem auto;
+      font-size: 1rem;
+      line-height: 1.6;
     }
 
-    nav a {
-      margin-left: 20px;
+    .location a {
+      color: #00695c;
       text-decoration: none;
-      color: #333;
       font-weight: bold;
-      font-size: 0.9rem;
     }
 
-    @media (max-width: 768px) {
-      .hero {
-        flex-direction: column;
-        text-align: center;
-      }
+    .music-player {
+      display: none;
+    }
 
-      nav {
-        position: static;
-        margin-top: 1rem;
+    audio {
+      display: none;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2.8rem;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Background music (Stephen Sanchez - Until I Found You) -->
-  <iframe width="0" height="0" src="https://www.youtube.com/embed/5Dqtu8eRcG8?autoplay=1&loop=1&playlist=5Dqtu8eRcG8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="display:none;"></iframe>
+  <!-- Background music -->
+  <audio autoplay loop>
+    <source src="https://dl.sndup.net/3z5n/Stephen%20Sanchez%20-%20Until%20I%20Found%20You.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
 
+  <div class="overlay">
+    <h2>WITH THEIR FEET IN THE SAND</h2>
+    <h1>Putri Fatimah Aspari</h1>
+    <h2>&</h2>
+    <h1>Levi Adam Hansen</h1>
 
-  <section class="hero">
-    <div class="left">
-      <h2>You're Invited to The Wedding of</h2>
-      <h1>Putri Fatima Aspari</h1>
-      <h1>&</h1>
-      <h1>Levi Adam Hansen</h1>
-      <p class="date">Sunday, 31<sup>st</sup> November at 5:00 PM</p>
-      <p class="desc">
-        With great joy and love in our hearts, we invite you to celebrate our wedding day.
-        Your presence will make our day truly special as we begin this new journey together.
-      </p>
-      <p class="location">
-        📍 Venue: <strong>The Shivana Bespoke</strong><br>
-        <a href="https://maps.app.goo.gl/GX4vEHvjsGR1r9ev8" target="_blank">View on Google Maps</a>
-      </p>
-      <button>Attending Confirmation</button>
-    </div>
+    <p>invite you to join them as they exchange marriage vows at the yacht wedding reception.</p>
+    <p><strong>Sunday, November 30, 2025</strong><br>at 05:00 PM</p>
 
-    <div class="right">
-      <div class="photo-frame">
-        <img src="https://i.imgur.com/nJV5R6z.jpg" alt="Putri & Levi" />
-      </div>
-    </div>
-  </section>
+    <p><strong>The Shivana Bespoke</strong><br>
+      📍 <a href="https://maps.app.goo.gl/AjGb4hgiXtAybJ786" target="_blank">View Location on Google Maps</a>
+    </p>
+
+    <p><em>Reception to follow</em></p>
+  </div>
 </body>
 </html>
