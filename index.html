@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Putri & Levi Wedding Invitation</title>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
   <style>
@@ -16,43 +16,13 @@
     }
 
     .overlay {
-      background: rgba(255, 255, 255, 0.7);
+      background: rgba(255, 255, 255, 0.95);
       padding: 4rem 2rem;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-    }
-
-    .welcome-popup {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(255, 255, 255, 0.9);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 999;
-      flex-direction: column;
-    }
-
-    .welcome-popup h2 {
-      font-family: 'Great Vibes', cursive;
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      color: #aa4b6b;
-    }
-
-    .welcome-popup button {
-      background-color: #aa4b6b;
-      color: white;
-      border: none;
-      padding: 12px 24px;
-      font-size: 1rem;
-      border-radius: 8px;
-      cursor: pointer;
     }
 
     h1 {
@@ -88,15 +58,29 @@
       margin-top: 1rem;
     }
 
-    .countdown {
-      margin-top: 2rem;
-      font-size: 1.5rem;
-      color: #aa4b6b;
-      font-weight: 600;
-    }
-
     audio {
       display: none;
+    }
+
+    /* ✨ Fade-in Animations */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1s ease forwards;
+    }
+
+    .fade-delay-1 { animation-delay: 0.5s; }
+    .fade-delay-2 { animation-delay: 1s; }
+    .fade-delay-3 { animation-delay: 1.5s; }
+    .fade-delay-4 { animation-delay: 2s; }
+    .fade-delay-5 { animation-delay: 2.5s; }
+    .fade-delay-6 { animation-delay: 3s; }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     @media (max-width: 600px) {
@@ -105,87 +89,50 @@
       }
     }
   </style>
-</head>
-
-<body>
-  <!-- Welcome popup -->
-  <div class="welcome-popup" id="welcomePopup">
-    <h2>Welcome to Putri & Levi's Wedding 💖</h2>
-    <button onclick="enterSite()">Tap to Enter</button>
-  </div>
-
-  <!-- Main Content -->
-  <div class="overlay" id="mainContent" style="display:none;">
-    <div id="guest-name"></div>
-    <h2>WITH THEIR FEET IN THE SAND</h2>
-    <h1>Putri Fatimah Aspari</h1>
-    <h1>&</h1>
-    <h1>Levi Adam Hansen</h1>
-
-    <p>invite you to join them as they exchange marriage vows at the yacht wedding reception.</p>
-    <p><strong>Sunday, November 30, 2025</strong><br>at 05:00 PM</p>
-
-    <p><strong>The Shivana Bespoke</strong><br>
-      📍 <a href="https://maps.app.goo.gl/AjGb4hgiXtAybJ786" target="_blank">View Location on Google Maps</a>
-    </p>
-
-    <p><em>Reception to follow</em></p>
-
-    <div class="countdown" id="countdown"></div>
-
-    <!-- Hidden audio player -->
-    <audio id="audioPlayer" loop preload="auto">
-      <source src="assets/romantic-song.mp3" type="audio/mpeg" />
-      Your browser does not support the audio element.
-    </audio>
-  </div>
 
   <script>
-    function enterSite() {
-      document.getElementById('welcomePopup').style.display = 'none';
-      document.getElementById('mainContent').style.display = 'block';
-
-      const audio = document.getElementById('audioPlayer');
-      // Trick for autoplay on mobile
-      audio.muted = true;
-      audio.play().then(() => {
-        audio.muted = false;
-      }).catch(err => {
-        console.warn("Audio autoplay failed: ", err);
-      });
-
-      // Show guest name
+    window.addEventListener('DOMContentLoaded', () => {
+      // Nama tamu dari URL
       const params = new URLSearchParams(window.location.search);
       const guest = params.get('dear');
       if (guest) {
         document.getElementById('guest-name').textContent = `Dear ${decodeURIComponent(guest)},`;
       }
 
-      startCountdown();
-    }
-
-    function startCountdown() {
-      const countdownEl = document.getElementById('countdown');
-      const eventDate = new Date("November 30, 2025 17:00:00").getTime();
-
-      const timer = setInterval(() => {
-        const now = new Date().getTime();
-        const distance = eventDate - now;
-
-        if (distance < 0) {
-          clearInterval(timer);
-          countdownEl.textContent = "It's Wedding Time! 💍";
-          return;
-        }
-
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        countdownEl.textContent = `Countdown: ${days}d ${hours}h ${minutes}m ${seconds}s`;
-      }, 1000);
-    }
+      // Auto play music on user interaction (mobile friendly)
+      const audio = document.getElementById("bg-music");
+      const playAudio = () => {
+        audio.play().catch(() => { /* ignored */ });
+        document.removeEventListener('click', playAudio);
+        document.removeEventListener('touchstart', playAudio);
+      };
+      document.addEventListener('click', playAudio);
+      document.addEventListener('touchstart', playAudio);
+    });
   </script>
+</head>
+<body>
+  <div class="overlay">
+    <div id="guest-name" class="fade-in fade-delay-1"></div>
+    <h2 class="fade-in fade-delay-2">WITH THEIR FEET IN THE SAND</h2>
+    <h1 class="fade-in fade-delay-3">Putri Fatimah Aspari</h1>
+    <h1 class="fade-in fade-delay-4">&</h1>
+    <h1 class="fade-in fade-delay-5">Levi Adam Hansen</h1>
+
+    <p class="fade-in fade-delay-6">invite you to join them as they exchange marriage vows at the yacht wedding reception.</p>
+    <p class="fade-in fade-delay-6"><strong>Sunday, November 30, 2025</strong><br>at 05:00 PM</p>
+
+    <p class="fade-in fade-delay-6"><strong>The Shivana Bespoke</strong><br>
+      📍 <a href="https://maps.app.goo.gl/AjGb4hgiXtAybJ786" target="_blank">View Location on Google Maps</a>
+    </p>
+
+    <p class="fade-in fade-delay-6"><em>Reception to follow</em></p>
+  </div>
+
+  <!-- 🎵 Background music -->
+  <audio id="bg-music" autoplay loop>
+    <source src="romantic-song.mp3" type="audio/mpeg" />
+    Your browser does not support the audio element.
+  </audio>
 </body>
 </html>
