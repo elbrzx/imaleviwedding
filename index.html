@@ -14,98 +14,129 @@
       font-family: 'Open Sans', sans-serif;
       background-color: #f9f7f6;
       color: #333;
-      display: flex;
-      justify-content: center;
-      padding: 20px;
     }
     .container {
-      background-color: #fff;
       max-width: 450px;
-      width: 100%;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      margin: auto;
+      overflow-x: hidden;
     }
     .section {
-      padding: 30px 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
       text-align: center;
     }
     .bow {
       background: url('https://i.imgur.com/5Z2a5v2.png') no-repeat center;
       background-size: contain;
       height: 80px;
-      margin-top: 20px;
+      width: 100%;
+      margin-bottom: 20px;
     }
     h1 {
       font-family: 'Great Vibes', cursive;
-      font-size: 2.5em;
+      font-size: 2.2em;
+      margin: 10px 0;
     }
     h2 {
       font-size: 1.3em;
       margin-bottom: 10px;
     }
-    .scroll-icon {
-      font-size: 2em;
+    p {
       margin: 10px 0;
     }
-    .countdown {
-      font-size: 1.2em;
-      margin: 20px 0;
+    .scroll-icon {
+      margin-top: 20px;
+      animation: bounce 2s infinite;
+      font-size: 1.5em;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(10px); }
     }
     .location-img {
       width: 100%;
       border-radius: 8px;
-      margin-top: 15px;
-    }
-    .rsvp-button {
-      margin: 20px 0;
+      margin: 15px 0;
     }
     .rsvp-button a {
       background-color: #d6336c;
       color: #fff;
-      padding: 10px 25px;
+      padding: 12px 30px;
       border-radius: 30px;
       text-decoration: none;
       font-weight: bold;
     }
+    .rsvp-button a:hover {
+      background-color: #a0204f;
+    }
     .time-schedule {
       margin-top: 20px;
-      font-size: 1em;
     }
-    .time-schedule p {
-      margin: 8px 0;
+    .popup {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
     }
-    @media screen and (max-width: 480px) {
-      .container {
-        border-radius: 0;
-        box-shadow: none;
-      }
+    .popup-content {
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      text-align: center;
+    }
+    .popup-content button {
+      margin-top: 20px;
+      padding: 10px 25px;
+      background-color: #d6336c;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      font-weight: bold;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
-  <audio autoplay loop hidden>
+  <div class="popup" id="welcomePopup">
+    <div class="popup-content">
+      <h2>Welcome to Our Wedding</h2>
+      <p>We’re so happy you’re here!</p>
+      <button onclick="startExperience()">Enter</button>
+    </div>
+  </div>  <audio id="bgMusic" loop>
     <source src="assets/romantic-song.mp3" type="audio/mp3">
   </audio>  <div class="container">
-    <div class="bow"></div>
+    <!-- Section 1 -->
     <div class="section">
-      <h2>You're invited to the wedding of</h2>
+      <div class="bow"></div>
       <h1>Putri Fatimah Aspari</h1>
-      <h1>& Levi Adam Hansen</h1>
-      <h2>Sunday, 30 November 2025</h2>
+      <h1>&</h1>
+      <h1>Levi Adam Hansen</h1>
       <div class="scroll-icon">⬇</div>
-    </div><div class="section">
+    </div><!-- Section 2 -->
+<div class="section">
   <h2>Dear Friends!</h2>
-  <p>We would love to celebrate our special day surrounded by our beloved family and friends. Please join us!</p>
-  <div class="countdown" id="countdown"></div>
+  <p>We would love to celebrate our special day surrounded by our beloved family and friends.</p>
+  <p>Please join us!</p>
+  <h2>Sunday, 30 November 2025</h2>
+  <p>05:00 PM</p>
+  <div class="scroll-icon">⬇</div>
 </div>
 
+<!-- Section 3 -->
 <div class="section">
-  <h2>LOCATION</h2>
+  <h2>Location</h2>
   <p>The ceremony and dinner will take place at:</p>
-  <h3>THE SHIVANNA BESPOKE</h3>
-  <img src="assets/venue.jpg" alt="venue" class="location-img">
+  <h3>The Shivanna Bespoke</h3>
+  <img src="https://i.imgur.com/LUB7Z7s.jpeg" alt="venue" class="location-img">
   <div class="rsvp-button">
     <a href="https://maps.app.goo.gl/ZKCPfC6DJHXeRWpJA" target="_blank">Open Map</a>
   </div>
@@ -116,26 +147,19 @@
   </div>
 </div>
 
+<!-- Section 4 -->
 <div class="section">
+  <h2>RSVP</h2>
+  <p>We truly hope you can join us on this special occasion. Please confirm your attendance.</p>
   <div class="rsvp-button">
     <a href="#">RSVP</a>
   </div>
 </div>
 
   </div>  <script>
-    // Countdown Timer
-    const targetDate = new Date('2025-11-30T17:00:00').getTime();
-    const countdownEl = document.getElementById('countdown');
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const distance = targetDate - now;
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-      countdownEl.innerHTML = `${days} Days ${hours}h ${minutes}m ${seconds}s`;
+    function startExperience() {
+      document.getElementById("welcomePopup").style.display = "none";
+      document.getElementById("bgMusic").play();
     }
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
   </script></body>
 </html>
