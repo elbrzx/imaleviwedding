@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Putri & Levi Wedding Invitation</title>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
   <style>
@@ -55,6 +55,33 @@
       margin-top: 2rem;
     }
 
+    .player-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: rgba(255, 255, 255, 0.85);
+      padding: 12px 16px;
+      border-radius: 16px;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+    }
+
+    .player-wrapper button {
+      margin-top: 10px;
+      padding: 8px 20px;
+      border: none;
+      border-radius: 10px;
+      background-color: #aa4b6b;
+      color: white;
+      font-weight: bold;
+      font-family: 'Montserrat', sans-serif;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .player-wrapper button:hover {
+      background-color: #8a3b58;
+    }
+
     #guest-name {
       font-weight: 600;
       color: #aa4b6b;
@@ -68,6 +95,7 @@
       }
     }
   </style>
+
   <script>
     // Ambil nama dari URL (contoh: ?dear=Putri%20and%20partner)
     window.addEventListener('DOMContentLoaded', () => {
@@ -77,8 +105,21 @@
         document.getElementById('guest-name').textContent = `Dear ${decodeURIComponent(guest)},`;
       }
     });
+
+    function togglePlay() {
+      const audio = document.getElementById('audioPlayer');
+      const btn = document.getElementById('playPauseBtn');
+      if (audio.paused) {
+        audio.play();
+        btn.textContent = '⏸ Pause';
+      } else {
+        audio.pause();
+        btn.textContent = '▶️ Play';
+      }
+    }
   </script>
 </head>
+
 <body>
   <div class="overlay">
     <div id="guest-name"></div>
@@ -97,13 +138,15 @@
     <p><em>Reception to follow</em></p>
 
     <div class="music-player">
-  <audio id="bg-music" autoplay loop>
-    <source src="assets/romantic-song.mp3" type="audio/mpeg" />
-    Your browser does not support the audio element.
-  </audio>
-  <button onclick="document.getElementById('bg-music').play()">🎶 Play Music</button>
-</div>
-
+      <p style="margin-bottom: 0.5rem; font-weight: bold;">Now Playing: Romantic Song</p>
+      <div class="player-wrapper">
+        <audio id="audioPlayer" autoplay loop>
+          <source src="assets/romantic-song-compressed.mp3" type="audio/mpeg" />
+          Your browser does not support the audio element.
+        </audio>
+        <button onclick="togglePlay()" id="playPauseBtn">⏸ Pause</button>
+      </div>
+    </div>
   </div>
 </body>
 </html>
