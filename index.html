@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Ima & Levi Wedding Invitation</title>
+    <style>
+      body { font-family: sans-serif; background: #fff6f6; text-align: center; padding: 2em; }
+      .greeting { font-size: 1.5em; margin-top: 2em; }
+    </style>
+  </head>
+  <body>
+    <h1>Undangan Pernikahan</h1>
+    <h2>Ima & Levi</h2>
+    <div class="greeting" id="greeting">Dear,</div>
+    <p>Kami mengundangmu untuk hadir dalam hari spesial kami!</p>
+
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const dear = params.get("dear") || "Tamu Spesial";
+      document.getElementById("greeting").innerText = `Dear ${dear}, selamat datang! 💖`;
+    </script>
+  </body>
+</html>
