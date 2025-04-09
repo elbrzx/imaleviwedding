@@ -1,108 +1,139 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Undangan Pernikahan Ima & Levi</title>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Open+Sans&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ima & Levi Wedding Invitation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Open+Sans&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
       font-family: 'Open Sans', sans-serif;
-      background: linear-gradient(to bottom right, #fff6f6, #ffeaea);
+      background: #fefaf7;
       color: #333;
-      text-align: center;
-      padding: 2rem;
     }
 
-    h1 {
-      font-family: 'Great Vibes', cursive;
-      font-size: 3em;
-      color: #d26a6a;
-      margin-top: 1rem;
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      padding: 4rem 2rem;
+      background-image: url('https://www.transparenttextures.com/patterns/white-wall.png');
+      background-size: cover;
+      min-height: 100vh;
     }
 
-    h2 {
-      font-size: 1.5em;
-      margin-bottom: 1.5rem;
-    }
-
-    .greeting {
-      font-size: 1.2em;
-      font-weight: bold;
-      margin-bottom: 2rem;
-      color: #bb4d4d;
-    }
-
-    .section {
-      margin: 2rem auto;
+    .left {
+      flex: 1;
       max-width: 600px;
-      background: #ffffffcc;
-      padding: 2rem;
-      border-radius: 16px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
 
-    .footer {
-      margin-top: 4rem;
-      font-size: 0.9em;
-      color: #777;
+    .left h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: #6e6e6e;
+      font-weight: 500;
     }
 
-    .love {
-      font-size: 2rem;
-      color: #e26c6c;
+    .left h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      margin: 0.5rem 0;
     }
 
-    img.cover {
-      max-width: 100%;
-      border-radius: 16px;
-      margin-bottom: 1rem;
+    .left h1 span {
+      font-weight: 700;
+    }
+
+    .left p.date {
+      font-size: 1.2rem;
+      margin: 1rem 0;
+    }
+
+    .left p.desc {
+      font-size: 1rem;
+      color: #666;
+      max-width: 500px;
+    }
+
+    .left button {
+      margin-top: 2rem;
+      padding: 0.8rem 1.5rem;
+      background-color: #556b61;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .right {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .photo-frame {
+      position: relative;
+      border-radius: 50%;
+      padding: 1rem;
+      background: #fff;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+
+    .photo-frame img {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 50%;
+    }
+
+    nav {
+      position: absolute;
+      top: 20px;
+      right: 40px;
+    }
+
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      nav {
+        position: static;
+        margin-top: 1rem;
+      }
     }
   </style>
 </head>
 <body>
+  <section class="hero">
+    <div class="left">
+      <h2>You're Invited to The Wedding of</h2>
+      <h1>Ima <span>&</span> Levi</h1>
+      <p class="date">Saturday, 12<sup>th</sup> October at 8:00 AM</p>
+      <p class="desc">
+        Dengan penuh cinta dan harapan, kami mengundang Anda untuk menjadi bagian dari hari bahagia kami. Kehadiranmu sangat berarti bagi kami berdua.
+      </p>
+      <button>Attending Confirmation</button>
+    </div>
 
-  <img class="cover" src="https://i.imgur.com/nJV5R6z.jpg" alt="Ima & Levi Wedding Cover"/>
-
-  <h1>Ima & Levi</h1>
-  <h2>Dengan penuh cinta, kami mengundangmu ke hari istimewa kami</h2>
-
-  <div class="greeting" id="greeting">Dear Tamu Spesial,</div>
-
-  <div class="section">
-    <h3>💍 Akad Nikah</h3>
-    <p>Sabtu, 12 Oktober 2025<br/>
-    Pukul 08.00 WIB<br/>
-    Kediaman Mempelai Wanita</p>
-  </div>
-
-  <div class="section">
-    <h3>🎉 Resepsi</h3>
-    <p>Sabtu, 12 Oktober 2025<br/>
-    Pukul 11.00 - 14.00 WIB<br/>
-    Ballroom Grand Hyatt, Jakarta</p>
-  </div>
-
-  <div class="section">
-    <h3>📍 Lokasi</h3>
-    <p><a href="https://maps.google.com" target="_blank">Lihat di Google Maps</a></p>
-  </div>
-
-  <div class="section">
-    <h3>💌 RSVP</h3>
-    <p>Konfirmasi kehadiranmu melalui <a href="https://forms.gle/your-rsvp-link" target="_blank">Form ini</a> yaa 💖</p>
-  </div>
-
-  <div class="footer">
-    <p class="love">Dengan cinta,</p>
-    <p>Ima & Levi</p>
-  </div>
-
-  <script>
-    const params = new URLSearchParams(window.location.search);
-    const dear = params.get("dear") || "Tamu Spesial";
-    document.getElementById("greeting").innerText = `Dear ${dear},`;
-  </script>
+    <div class="right">
+      <div class="photo-frame">
+        <img src="https://www.brides.com/thmb/LMyiMPxRFx82BLiHZC8lySJFnGo=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/marriage-pose-photo-recirc-kyle-john-1-29-4f97523aa049471992292e8d6ddc41ee.jpg" alt="Ima & Levi" />
+      </div>
+    </div>
+  </section>
 </body>
 </html>
