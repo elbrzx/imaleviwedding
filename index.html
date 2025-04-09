@@ -101,11 +101,13 @@
 </head>
 
 <body>
+  <!-- Welcome popup -->
   <div class="welcome-popup" id="welcomePopup">
     <h2>Welcome to Putri & Levi's Wedding 💖</h2>
     <button onclick="enterSite()">Tap to Enter</button>
   </div>
 
+  <!-- Main Content -->
   <div class="overlay" id="mainContent" style="display:none;">
     <div id="guest-name"></div>
     <h2>WITH THEIR FEET IN THE SAND</h2>
@@ -121,29 +123,33 @@
     </p>
 
     <p><em>Reception to follow</em></p>
+    
+    <!-- Hidden audio player -->
     <audio id="audioPlayer" loop>
-      <source src="assets/romantic-song.mp3" type="audio/mpeg" />
+      <source src="romantic-song.mp3" type="audio/mpeg" />
       Your browser does not support the audio element.
     </audio>
   </div>
 
   <script>
     function enterSite() {
+      // Hide popup
       document.getElementById('welcomePopup').style.display = 'none';
       document.getElementById('mainContent').style.display = 'block';
+
+      // Play audio
       const audio = document.getElementById('audioPlayer');
       audio.play().catch(err => {
         console.warn("Audio play failed: ", err);
       });
-    }
 
-    window.addEventListener('DOMContentLoaded', () => {
+      // Show guest name
       const params = new URLSearchParams(window.location.search);
       const guest = params.get('dear');
       if (guest) {
         document.getElementById('guest-name').textContent = `Dear ${decodeURIComponent(guest)},`;
       }
-    });
+    }
   </script>
 </body>
 </html>
