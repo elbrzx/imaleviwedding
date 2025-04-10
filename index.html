@@ -9,6 +9,11 @@
     * {
       box-sizing: border-box;
     }
+    .noscroll {
+      overflow: hidden;
+      height: 100vh;
+    }
+
 
     body {
       margin: 0;
@@ -16,7 +21,7 @@
       background: url('assets/background.jpg') no-repeat center center/cover;
       background-size: cover;
       height: 100vh;
-      overflow: hidden;
+      /* Remove this from body */
       text-align: center;
     }
 
@@ -174,22 +179,28 @@
 
   <!-- 💫 Scripts -->
   <script>
-    const audio = document.getElementById("bg-music");
-
     function closePopup() {
       document.getElementById("popup").style.display = "none";
       document.getElementById("main-content").style.display = "block";
+      document.body.classList.remove('noscroll'); // ✅ allow scroll
+
+      const audio = document.getElementById("bg-music");
       audio.muted = false;
       audio.play().catch(() => {});
     }
 
     window.addEventListener('DOMContentLoaded', () => {
+    // Nama tamu dari URL
       const params = new URLSearchParams(window.location.search);
       const guest = params.get('dear');
       if (guest) {
         document.getElementById('guest-name').textContent = `Dear ${decodeURIComponent(guest)},`;
       }
+
+    // ❄️ Blokir scroll saat popup muncul
+      document.body.classList.add('noscroll');
     });
+
   </script>
 </body>
 </html>
