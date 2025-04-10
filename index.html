@@ -1,207 +1,191 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wedding Invitation</title>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Open+Sans&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Putri & Levi Wedding Invitation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
   <style>
     * {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      scroll-behavior: smooth;
     }
+
     body {
-      font-family: 'Open Sans', sans-serif;
-      background-color: #f9f7f6;
-      color: #333;
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: url('assets/background.jpg') no-repeat center center/cover;
+      color: #222;
+      text-align: center;
     }
-    .container {
-      max-width: 450px;
-      margin: auto;
-      overflow-x: hidden;
-    }
-    .section {
-      height: 100vh;
+
+    .overlay {
+      background: rgba(255, 255, 255, 0.95);
+      min-height: 100vh;
+      padding: 4rem 2rem;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 20px;
-      text-align: center;
     }
-    .bow {
-      background: url('assets/background.jpg') no-repeat center;
-      background-size: contain;
-      height: 80px;
-      width: 100%;
-      margin-bottom: 20px;
-    }
-    h1, h2, h3, p, .scroll-icon {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 1s ease, transform 1s ease;
-    }
-    .fade-in {
-      opacity: 1 !important;
-      transform: translateY(0) !important;
-    }
+
     h1 {
       font-family: 'Great Vibes', cursive;
-      font-size: 2.2em;
-      margin: 5px 0;
+      font-size: 4rem;
+      margin: 0.5rem 0;
     }
+
     h2 {
-      font-size: 1.3em;
-      margin: 5px 0;
+      font-size: 1.2rem;
+      letter-spacing: 1px;
+      margin-bottom: 2rem;
+      font-weight: 400;
     }
+
     p {
-      margin: 6px 0;
+      max-width: 600px;
+      margin: 1rem auto;
+      font-size: 1rem;
+      line-height: 1.6;
     }
-    .scroll-icon {
-      margin-top: 10px;
-      animation: bounce 2s infinite;
-      font-size: 2em;
-    }
-    .triangle-down {
-      width: 0;
-      height: 0;
-      border-left: 10px solid transparent;
-      border-right: 10px solid transparent;
-      border-top: 12px solid #333;
-      margin-top: 10px;
-      animation: bounce 2s infinite;
-    }
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(10px); }
-    }
-    .location-img {
-      width: 100%;
-      border-radius: 8px;
-      margin: 10px 0;
-    }
-    .rsvp-button a {
-      background-color: #d6336c;
-      color: #fff;
-      padding: 10px 25px;
-      border-radius: 30px;
+
+    .location a {
+      color: #00695c;
       text-decoration: none;
       font-weight: bold;
     }
-    .rsvp-button a:hover {
-      background-color: #a0204f;
+
+    #guest-name {
+      font-weight: 600;
+      color: #aa4b6b;
+      font-size: 1.2rem;
+      margin-top: 1rem;
     }
-    .time-schedule {
-      margin-top: 15px;
-    }
+
+    /* 💌 Welcome Popup */
     .popup {
       position: fixed;
       top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-color: rgba(0,0,0,0.8);
+      width: 100vw; height: 100vh;
+      background: rgba(0, 0, 0, 0.6);
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       z-index: 999;
     }
-    .popup-content {
-      background: #fff;
-      padding: 30px 25px;
-      border-radius: 12px;
+
+    .popup-box {
+      background: white;
+      padding: 2rem;
+      max-width: 90%;
+      border-radius: 15px;
       text-align: center;
-      max-width: 300px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      animation: fadeIn 0.6s ease forwards;
     }
-    .popup-content h2 {
+
+    .popup-box h3 {
       font-family: 'Great Vibes', cursive;
-      font-size: 1.8em;
-      color: #d6336c;
-      margin-bottom: 10px;
+      font-size: 2rem;
+      margin-bottom: 1rem;
     }
-    .popup-content button {
-      margin-top: 20px;
-      padding: 10px 25px;
-      background-color: #d6336c;
-      color: white;
+
+    .popup-box p {
+      margin-bottom: 1.5rem;
+    }
+
+    .popup-box button {
+      padding: 0.7rem 1.5rem;
       border: none;
-      border-radius: 25px;
+      background-color: #aa4b6b;
+      color: white;
       font-weight: bold;
+      font-size: 1rem;
+      border-radius: 30px;
       cursor: pointer;
-      font-size: 1em;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* ✨ Text Animation */
+    .fade-slide {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeSlideUp 1s ease forwards;
+    }
+
+    .fade-delay-1 { animation-delay: 0.3s; }
+    .fade-delay-2 { animation-delay: 0.6s; }
+    .fade-delay-3 { animation-delay: 0.9s; }
+    .fade-delay-4 { animation-delay: 1.2s; }
+    .fade-delay-5 { animation-delay: 1.5s; }
+
+    @keyframes fadeSlideUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2.8rem; }
     }
   </style>
 </head>
 <body>
-  <div class="popup" id="welcomePopup">
-    <div class="popup-content">
-      <h2>Our Happy Moment Begins Now</h2>
-      <button onclick="startExperience()">ENTER</button>
+
+  <!-- 🎉 Welcome Popup -->
+  <div class="popup" id="popup">
+    <div class="popup-box">
+      <h3>You're Invited!</h3>
+      <p>To the wedding of<br><strong>Putri & Levi</strong></p>
+      <button onclick="closePopup()">Open Invitation</button>
     </div>
-  </div>  <audio id="bgMusic" loop>
-    <source src="assets/romantic-song.mp3" type="audio/mp3">
-  </audio>  <div class="container">
-    <!-- Section 1 -->
-    <div class="section">
-      <div class="bow"></div>
-      <h1 class="fade">Putri Fatimah Aspari</h1>
-      <h1 class="fade">&</h1>
-      <h1 class="fade">Levi Adam Hansen</h1>
-      <div class="triangle-down fade"></div>
-    </div><!-- Section 2 -->
-<div class="section">
-  <h2 class="fade">Dear Friends!</h2>
-  <p class="fade">We would love to celebrate our special day surrounded by our beloved family and friends.</p>
-  <p class="fade">Please join us!</p>
-  <h2 class="fade">Sunday, 30 November 2025</h2>
-  <p class="fade">05:00 PM</p>
-  <div class="triangle-down fade"></div>
-</div>
-
-<!-- Section 3 -->
-<div class="section">
-  <h2 class="fade">Location</h2>
-  <p class="fade">The ceremony and dinner will take place at:</p>
-  <h3 class="fade">The Shivanna Bespoke</h3>
-  <img src="assets/venue.jpg" alt="venue" class="location-img fade">
-  <div class="rsvp-button fade">
-    <a href="https://maps.app.goo.gl/ZKCPfC6DJHXeRWpJA" target="_blank">Open Map</a>
   </div>
-  <div class="time-schedule fade">
-    <p>15:00 - Guest Arrival</p>
-    <p>16:00 - Ceremony</p>
-    <p>17:00 - Dinner Reception</p>
-  </div>
-</div>
 
-<!-- Section 4 -->
-<div class="section">
-  <h2 class="fade">RSVP</h2>
-  <p class="fade">We truly hope you can join us on this special occasion. Please confirm your attendance.</p>
-  <div class="rsvp-button fade">
-    <a href="#">RSVP</a>
-  </div>
-</div>
+  <!-- 💒 Main Invitation -->
+  <div class="overlay" id="main-content" style="display:none;">
+    <div id="guest-name" class="fade-slide fade-delay-1"></div>
+    <h2 class="fade-slide fade-delay-2">WITH THEIR FEET IN THE SAND</h2>
+    <h1 class="fade-slide fade-delay-3">Putri Fatimah Aspari</h1>
+    <h1 class="fade-slide fade-delay-3">&</h1>
+    <h1 class="fade-slide fade-delay-3">Levi Adam Hansen</h1>
 
-  </div>  <script>
-    function startExperience() {
-      document.getElementById("welcomePopup").style.display = "none";
-      document.getElementById("bgMusic").play();
+    <p class="fade-slide fade-delay-4">invite you to join them as they exchange marriage vows at the yacht wedding reception.</p>
+    <p class="fade-slide fade-delay-4"><strong>Sunday, November 30, 2025</strong><br>at 05:00 PM</p>
+
+    <p class="fade-slide fade-delay-5"><strong>The Shivana Bespoke</strong><br>
+      📍 <a href="https://maps.app.goo.gl/AjGb4hgiXtAybJ786" target="_blank">View Location on Google Maps</a>
+    </p>
+
+    <p class="fade-slide fade-delay-5"><em>Reception to follow</em></p>
+  </div>
+
+  <!-- 🎵 Music -->
+  <audio id="bg-music" autoplay muted loop preload="auto">
+    <source src="romantic-song.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- 💫 Scripts -->
+  <script>
+    const audio = document.getElementById("bg-music");
+
+    function closePopup() {
+      document.getElementById("popup").style.display = "none";
+      document.getElementById("main-content").style.display = "block";
+      audio.muted = false;
+      audio.play().catch(() => {});
     }
 
-    // Scroll animation for fade-in
-    const fadeElements = document.querySelectorAll('.fade');
-
-    function handleScroll() {
-      fadeElements.forEach(el => {
-        const rect = el.getBoundingClientRect();
-        if (rect.top < window.innerHeight - 80) {
-          el.classList.add('fade-in');
-        }
-      });
-    }
-
-    window.addEventListener('scroll', handleScroll);
-    window.addEventListener('load', handleScroll);
-  </script></body>
+    window.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const guest = params.get('dear');
+      if (guest) {
+        document.getElementById('guest-name').textContent = `Dear ${decodeURIComponent(guest)},`;
+      }
+    });
+  </script>
+</body>
 </html>
